@@ -7,7 +7,7 @@ starttidspunkt: 8:37
 sluttidspunkt: 15:49
 
 ## Dag 2
-Skriv dit starttidspunkt her og commit/push til GitHub: 
+starttidspunkt: 8:03
 
 Skriv dit sluttidspunkt her og commit/push til GitHub: 
 
