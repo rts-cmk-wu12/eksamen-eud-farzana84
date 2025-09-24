@@ -1,4 +1,3 @@
-// src/lib/api/users.js
 import fetchErrors from "../fetchErrors";
 
 const baseUrl = process.env.API_BASE_URL;
@@ -12,12 +11,12 @@ export async function getSingleUser(id, token) {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`, // token string, not cookie object
+      Authorization: `Bearer ${token}`,
     },
     cache: "no-store",
   });
 
-  fetchErrors(res); // throws if !res.ok
+  fetchErrors(res); 
   return res.json();
 }
 

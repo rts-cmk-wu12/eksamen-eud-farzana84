@@ -11,14 +11,11 @@ export async function loginAction(prevState, formData) {
 	const email = formData.get("email");
 	const password = formData.get("password");
   const cookieStore = await cookies();
-
-	const schema = z.object({
+  const schema = z.object({
 		email: z.string().min(1, { message: "Email is required" }),
 		password: z.string().min(1, { message: "Password is required" })
 	});
-
-
-	const validated = schema.safeParse({
+   const validated = schema.safeParse({
 		email, password
 	});
 
@@ -26,9 +23,7 @@ export async function loginAction(prevState, formData) {
 		...validated,
 		...(z.treeifyError(validated.error))
 	};
-
-
-  const baseUrl = process.env.API_AUTH_URL;
+   const baseUrl = process.env.API_AUTH_URL;
     try {
      const response = await fetch(baseUrl, {
       method: "POST",
@@ -44,17 +39,11 @@ export async function loginAction(prevState, formData) {
         success: false,
        errors: ["Invalid email or password."]
     };
-
     const data = await response.json();
-
-    //console.log(data);
-
     cookieStore.set("swaphub_token", data.token , {maxAge: 60 * 30 * 60 });
     cookieStore.set("swaphub_userid", data.userId, {maxAge: 60 * 30 * 60});
-
     return { success: true };
-    
-  } catch (error) {
+     } catch (error) {
     throw new Error(error);
   }
 }
