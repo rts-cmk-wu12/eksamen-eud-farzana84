@@ -86,3 +86,60 @@ const handlePageChange = (page) => {
     </div>
   );
 }
+
+/*
+"use client";
+export default function Pagination({ page, total, onChange }) {
+  const pagesToShow = (p, t) => {
+    if (t <= 7) return Array.from({ length: t }, (_, i) => i + 1);
+    if (p <= 4) return [1, 2, 3, 4, 5, "…", t];
+    if (p >= t - 3) return [1, "…", t - 4, t - 3, t - 2, t - 1, t];
+    return [1, "…", p - 1, p, p + 1, "…", t];
+  };
+
+  const items = pagesToShow(page, total);
+
+  return (
+    <div className="flex items-center justify-center gap-2">
+      <button
+        onClick={() => onChange(page - 1)}
+        disabled={page === 1}
+        className="px-3 py-2 text-sm border rounded-lg disabled:opacity-50"
+      >
+        ‹ Previous
+      </button>
+
+      <div className="flex items-center gap-1">
+        {items.map((it, i) =>
+          it === "…" ? (
+            <span key={`e${i}`} className="px-2 select-none">…</span>
+          ) : it === page ? (
+            <span
+              key={it}
+              className="px-3 py-2 text-sm rounded-lg bg-gray-900 text-white"
+            >
+              {it}
+            </span>
+          ) : (
+            <button
+              key={it}
+              onClick={() => onChange(it)}
+              className="px-3 py-2 text-sm border rounded-lg"
+            >
+              {it}
+            </button>
+          )
+        )}
+      </div>
+
+      <button
+        onClick={() => onChange(page + 1)}
+        disabled={page === total}
+        className="px-3 py-2 text-sm border rounded-lg disabled:opacity-50"
+      >
+        Next ›
+      </button>
+    </div>
+  );
+}
+*/

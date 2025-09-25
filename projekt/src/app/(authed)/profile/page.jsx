@@ -1,32 +1,19 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import ProfileForm from "@/components/forms/ProfileForm";
-
 const baseUrl = process.env.API_BASE_URL;
 
 export const metadata = {
   title: "Your Profile",
   description: "Manage your profile",
 };
-
 export default async function ProfilePage() {
   const c = await cookies();
   const token = c.get("swaphub_token")?.value;
   const userId = c.get("swaphub_userid")?.value;
-
-  console.log(
-    "Profile page - token:",
-    !!token,
-    "userId:",
-    !!userId,
-    "baseUrl:",
-    baseUrl
-  );
-
   if (!token || !userId) redirect("/login");
 
   if (!baseUrl) {
-    console.error("API_BASE_URL is not set");
     redirect("/login");
   }
   const res = await fetch(`${baseUrl}/users/${userId}`, {
@@ -60,6 +47,7 @@ export default async function ProfilePage() {
       <section className="rounded-xl border border-gray-200 bg-white p-6">
         <ProfileForm profileData={profileData} />
       </section>
+      <div className="flex justify-center"></div>
     </div>
   );
 }

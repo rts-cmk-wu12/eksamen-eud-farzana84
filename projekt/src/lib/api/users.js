@@ -21,23 +21,3 @@ export async function getSingleUser(id, token) {
 }
 
 
-/*
-export async function signupUserToClass({ classId, action, userId, token }) {
-  try {
-    const response = await fetch(
-      `${baseUrl}/api/v1/users/${userId}/classes/${classId}`,
-      {
-        method: action,
-        headers: {
-          Authorization: "Bearer " + token,
-          "content-type": "application/json",
-        },
-      }
-    );
-    // Return raw Response (same as your original)
-    return response;
-  } catch (error) {
-    throw new Error(error);
-  }
-}
-*/

@@ -16,16 +16,17 @@ export default async function Header() {
             <Link href="/" className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
               Listings
             </Link>
-            <Link href="/community" className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
-              Community
-            </Link>
-            <Link href="/contact" className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
+         
+           <Link   href={{ pathname: "/", hash: "contact" }}
+            className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
               Contact
             </Link>
-
-            <div className="ml-4 flex items-center gap-2">
+           <div className="ml-4 flex items-center gap-2">
               {authed ? (
                 <>
+                   <Link href="/community" className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
+              Your Swap Requests
+            </Link>
                   <form action={logout}>
                     <button className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium transition-colors">
                       Log out
