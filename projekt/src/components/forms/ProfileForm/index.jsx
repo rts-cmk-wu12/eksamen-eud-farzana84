@@ -3,11 +3,9 @@ import { toast } from "sonner";
 import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import profileAction from "./profileAction";
-
 export default function ProfileForm({ profileData }) {
   const router = useRouter();
   const [formState, formAction, pending] = useActionState(profileAction, null);
-
   useEffect(() => {
     if (formState?.success) {
       toast.success("Profile updated successfully");
@@ -16,17 +14,14 @@ export default function ProfileForm({ profileData }) {
       }, 1500);
     }
   }, [formState?.success, router]);
-
   return (
     <form action={formAction} className="space-y-4">
       <h2 className="text-base font-semibold text-gray-900">Edit profile</h2>
-
       {formState?.errors?.length > 0 && (
         <div className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">
           {formState.errors[0]}
         </div>
       )}
-
       <div className="space-y-1">
         <label className="text-gray-900">Email</label>
         <input
@@ -39,7 +34,6 @@ export default function ProfileForm({ profileData }) {
           {formState?.properties?.email?.errors}
         </p>
       </div>
-
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-1">
           <label className="text-gray-900">First name</label>
@@ -53,7 +47,6 @@ export default function ProfileForm({ profileData }) {
             {formState?.properties?.firstname?.errors}
           </p>
         </div>
-
         <div className="space-y-1">
           <label className="text-gray-900">Last name</label>
           <input
@@ -67,7 +60,6 @@ export default function ProfileForm({ profileData }) {
           </p>
         </div>
       </div>
-
       <div className="space-y-1">
         <label className="text-gray-900">Password</label>
         <input
@@ -80,7 +72,6 @@ export default function ProfileForm({ profileData }) {
           {formState?.properties?.password?.errors}
         </p>
       </div>
-
       <button
         type="submit"
         disabled={pending}

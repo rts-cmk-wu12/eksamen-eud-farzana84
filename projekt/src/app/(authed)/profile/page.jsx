@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import ProfileForm from "@/components/forms/ProfileForm";
 const baseUrl = process.env.API_BASE_URL;
-
 export const metadata = {
   title: "Your Profile",
   description: "Manage your profile",
@@ -12,7 +11,6 @@ export default async function ProfilePage() {
   const token = c.get("swaphub_token")?.value;
   const userId = c.get("swaphub_userid")?.value;
   if (!token || !userId) redirect("/login");
-
   if (!baseUrl) {
     redirect("/login");
   }
@@ -29,7 +27,6 @@ export default async function ProfilePage() {
   const updated = profileData.updatedAt
     ? new Date(profileData.updatedAt).toLocaleString()
     : "-";
-
   return (
     <div className="mx-auto max-w-3xl py-10 space-y-8">
       <section className="rounded-xl border border-gray-200 bg-white p-6 space-y-3">
@@ -51,7 +48,6 @@ export default async function ProfilePage() {
     </div>
   );
 }
-
 function Detail({ label, value }) {
   return (
     <div className="flex items-center justify-between text-sm">

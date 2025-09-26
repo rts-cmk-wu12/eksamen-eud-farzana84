@@ -1,4 +1,3 @@
-
 "use client";
 // I have copied some code from my old project
 import { useActionState, useEffect } from "react";
@@ -56,15 +55,12 @@ export default function  SignInForm() {
           {formState?.properties?.password?.errors}
         </p>
       </div>
-
-        <div className="">
+       <div className="">
           <Button buttontext={"log ind"} />
           <p className="text-orange-500 text-xl font-bold p-3 my-2">
           {formState?.errors}
         </p>
         </div>
-
-
       <p className="text-gray-900">
           Not a member yet?{" "}
         <Link href={"/signup"}>

@@ -1,51 +1,44 @@
 "use server";
-import { baseUrl } from "@/constant";
+import { z } from "zod";
 export async function newsletterAction(prevState, formData) {
-    const email = formData.get("email");
-    const properties = {};
-
-    if (!email || !isValidEmail(email)) {
-        properties.email = { errors: "Please enter a valid email address" };
-    }
-     if (Object.keys(properties).length > 0) {
+ const email = formData.get("email");
+ const schema = z.object({
+  email: z.string()
+    .min(1, { message: "please enter a valid email address" })
+});
+const validated = schema.safeParse({email: email || ""});
+    if (!validated.success) {
+        const treeified = z.treeifyError(validated.error);
         return {
-            success: false,
-            properties,
-            errors: "Please fix the errors above"
+            ...validated,
+            ...treeified
         };
     }
-      try {
+   const baseUrl = process.env.API_BASE_URL;
+   try {
+        const requestData = new FormData();
+        requestData.append('email', validated.data.email);
         const response = await fetch(`${baseUrl}/newsletter`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: email.trim()
-            })
+            body: requestData
         });
-
-        if (response.status === 204) {
+ if (response.status === 204) {
             return {
                 success: true,
                 message: "Successfully subscribed to newsletter!"
             };
-        } else {
+        } else if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             return {
                 success: false,
-                errors: errorData.message || "Failed to subscribe. Please try again."
+                errors: { general: [errorData?.message || 'Failed to subscribe. Please try again.'] }
             };
         }
+        return { success: true };
     } catch (error) {
-        console.error("Newsletter subscription error:", error);
         return {
             success: false,
-            errors: "Failed to subscribe. Please check your connection and try again."
+            errors: { general: ["Failed to subscribe. Please check your connection and try again."] }
         };
     }
-}
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
 }

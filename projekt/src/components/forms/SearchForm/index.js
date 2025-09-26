@@ -1,28 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
-
 export default function SearchForm({ onSearch, onSort, searchQuery: externalSearchQuery, selectedSort: externalSelectedSort }) {
   const [searchQuery, setSearchQuery] = useState(externalSearchQuery || "");
   const [selectedSort, setSelectedSort] = useState(externalSelectedSort || "new");
-
-   useEffect(() => {
+  useEffect(() => {
     if (externalSearchQuery !== undefined) {
       setSearchQuery(externalSearchQuery);
     }
   }, [externalSearchQuery]);
-
-  useEffect(() => {
+useEffect(() => {
     if (externalSelectedSort !== undefined) {
       setSelectedSort(externalSelectedSort);
     }
   }, [externalSelectedSort]);
-
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     onSearch?.(searchQuery);
   };
-
-  const handleSortChange = (sortType) => {
+const handleSortChange = (sortType) => {
     setSelectedSort(sortType);
     onSort?.(sortType);
   };
@@ -31,8 +26,7 @@ export default function SearchForm({ onSearch, onSort, searchQuery: externalSear
     setSearchQuery(value);
     onSearch?.(value);
   };
-
-  return (
+return (
     <div className="flex items-center gap-4 w-full max-w-4xl">
       <div className="flex-1">
         <form onSubmit={handleSubmit} className="relative">
@@ -71,7 +65,7 @@ export default function SearchForm({ onSearch, onSort, searchQuery: externalSear
           onClick={() => handleSortChange("new")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
             selectedSort === "new"
-              ? "bg-gray-700 text-white"
+              ? "bg-[#95D6A4] text-black"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >
@@ -97,7 +91,7 @@ export default function SearchForm({ onSearch, onSort, searchQuery: externalSear
           onClick={() => handleSortChange("old")}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
             selectedSort === "old"
-              ? "bg-gray-700 text-white"
+              ? "bg-[#95D6A4] text-black"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >

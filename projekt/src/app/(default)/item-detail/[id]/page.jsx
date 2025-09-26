@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getSingleListingDetails } from "@/lib/api/listings";
 import ListingInfo from "@/components/listings/ListingInfo";
 import RelatedItems from "@/components/RelatedItems";
-
 export async function generateMetadata({ params }, parent) {
   const id = (await params).id;
   const singleListing = await getSingleListingDetails(id);
@@ -11,7 +10,6 @@ export async function generateMetadata({ params }, parent) {
     description: singleListing.description,
   };
 }
-
 export default async function ListingDetailsPage({ params }) {
   const id = (await params).id;
   const singleListing = await getSingleListingDetails(id);

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useMemo } from "react";
 import ListingsGrid from "./ListingsGrid";
 import Pagination from "./Pagination";
@@ -10,7 +9,6 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const itemsPerPage = 6;
-
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -28,19 +26,16 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
 
     fetchListings();
   }, []);
-
-  const filteredAndSortedListings = useMemo(() => {
+   const filteredAndSortedListings = useMemo(() => {
     let filtered = allListings;
-
-    if (searchQuery.trim()) {
+     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = allListings.filter(listing => 
         listing.title.toLowerCase().includes(query) ||
         listing.description.toLowerCase().includes(query)
       );
     }
-
-    const sorted = [...filtered].sort((a, b) => {
+      const sorted = [...filtered].sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
       
@@ -53,8 +48,7 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
     });
       return sorted;
   }, [allListings, searchQuery, sortBy]);
-
-  useEffect(() => {
+   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, sortBy]);
 
@@ -68,24 +62,21 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
       setCurrentPage(page);
     }
   };
-
-  if (loading) {
+if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-gray-600">Loading listings...</div>
       </div>
     );
   }
-
-  if (error) {
+if (error) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-red-600">{error}</div>
       </div>
     );
   }
-
-  if (filteredAndSortedListings.length === 0) {
+if (filteredAndSortedListings.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-gray-600">
@@ -94,7 +85,6 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
       </div>
     );
   }
-
   return (
     <>
       <ListingsGrid listings={currentListings} />

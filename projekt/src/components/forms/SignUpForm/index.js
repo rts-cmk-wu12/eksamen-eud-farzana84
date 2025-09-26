@@ -1,8 +1,6 @@
 
 "use client";
-
 // I have copied some code from my old project
-
 import { useActionState, useEffect } from "react";
 import { signUpAction } from "./signUpAction";
 import Button from "@/components/Button";
@@ -10,17 +8,14 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { CircleLoader } from "react-spinners";
 import Link from "next/link";
-
 const override = {
   display: "block",
   margin: "0 auto",
 };
-
 export default function SignUpForm() {
   const router = useRouter();
   const [formState, formAction, isPending] = useActionState(signUpAction, {});
-
-  useEffect(() => {
+useEffect(() => {
     if (formState?.success) {
       toast.success("Your registration is successful");
       setTimeout(() => router.replace("/"), 1500); // 1.5s then home

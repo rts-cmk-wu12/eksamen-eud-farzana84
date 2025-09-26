@@ -1,5 +1,4 @@
 "use client";
-
 import { useActionState, useEffect } from "react";
 import { newsletterAction } from "./newsletterAction";
 import Button from "@/components/Button";
@@ -17,8 +16,7 @@ export default function NewsletterForm() {
             toast.success("Successfully subscribed to newsletter!");
         }
     }, [formState]);
-
-    return isPending ? (
+   return isPending ? (
         <CircleLoader
             color="#95D6A4"
             loading={true}
@@ -31,22 +29,19 @@ export default function NewsletterForm() {
             <p className="text-gray-600 text-sm mb-4">
                 Subscribe to our newsletter for the latest updates and offers.
             </p>
-
-            <div className="space-y-1">
+           <div className="space-y-1">
                 <label className="text-gray-900 font-medium">Email Address</label>
                 <input
                     type="email"
-                    placeholder="your.email@example.com"
+                    placeholder="Type your email here"
                     name="email"
-                    required
                     className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <p className="text-orange-500 text-sm">
                     {formState?.properties?.email?.errors}
                 </p>
             </div>
-
-            <div className="">
+             <div className="">
                 <Button buttontext="Subscribe" />
                 <p className="text-orange-500 text-sm font-medium p-2 my-2">
                     {formState?.errors}

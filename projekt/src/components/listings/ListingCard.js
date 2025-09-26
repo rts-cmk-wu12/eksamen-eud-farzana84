@@ -1,14 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-
 export default function ListingCard({ singleListing }) {
   const { id, title = "Text" } = singleListing || {};
   const img = singleListing?.asset?.url || null;
-
   return (
     <Link
       href={`/item-detail/${id}`}
-      className="block rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-sm"
+      className="block rounded-xl border border-gray-200 bg-[#95D6A4] transition-shadow hover:shadow-sm opacity-90 hover:opacity-100"
     >
       <div className="p-5">
       <div className="relative aspect-square rounded bg-gray-200 overflow-hidden">
