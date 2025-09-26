@@ -36,7 +36,13 @@ Et versionsstyringsværktøj, som lader mig lave branches og versioner af min ko
 Et utility-baseret mobile-first CSS bibliotek. Jeg har brugt det, fordi jeg kan skrive små utility-klasser direkte i koden uden at lave store CSS-filer.  
 
 * **React-Icons** 
-Et ikon-bibliotek, som er beregnet på React. Jeg har brugt React-icons, fordi det gør super let at bruge ikoner. I stedet for selv at hente SVGer, kan jeg importere et ikon som en komponent.   
+Et ikon-bibliotek, som er beregnet på React. Jeg har brugt React-icons, fordi det gør super let at bruge ikoner. I stedet for selv at hente SVGer, kan jeg importere et ikon som en komponent. 
+
+* **React-Spinner**   
+Et lille bibliotek med loading indikatorer til React. Jeg har brugt det fordi, når data hentes eller en handling er i gang, det giver brugeren tydelig feedback.
+
+* **Sonner** 
+Et simpelt toast-bibliotek til React. Jeg har brugt Sonner, fordi det gør det nemt at vise korte beskeder, success eller fejl uden at afbryde brugeren.
 
 * **Zod** 
 Et TypeScript-first valideringsbibliotek, som fungerer rigtig godt med Next.js og React. Jeg bruger Zod til at validere bruger-input fra formularer, fordi, i stedet for en masse conditional statements med forvirrende regex osv. kan man hurtigt og simpelt validere med Zod og sende fejlbeskeder nemt tilbage til brugeren.

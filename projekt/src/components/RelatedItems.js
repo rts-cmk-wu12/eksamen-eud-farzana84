@@ -41,7 +41,7 @@ export default function RelatedItems({ currentListing }) {
   return (
     <div className="py-8">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">
-        More items from {currentListing.swapperName}
+        More items {currentListing.swapperName}
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {relatedItems.map((singleListing) => (

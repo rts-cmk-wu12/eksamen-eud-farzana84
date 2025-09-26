@@ -1,4 +1,3 @@
-
 "use client";
 // I have copied some code from my old project
 import { useActionState, useEffect } from "react";
@@ -15,10 +14,10 @@ const override = {
 export default function SignUpForm() {
   const router = useRouter();
   const [formState, formAction, isPending] = useActionState(signUpAction, {});
-useEffect(() => {
+  useEffect(() => {
     if (formState?.success) {
       toast.success("Your registration is successful");
-      setTimeout(() => router.replace("/"), 1500); // 1.5s then home
+      setTimeout(() => router.replace("/"), 1500);
     }
   }, [formState, router]);
   return isPending ? (
@@ -30,7 +29,10 @@ useEffect(() => {
     />
   ) : (
     <>
-      <form action={formAction} className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-6 space-y-4">
+      <form
+        action={formAction}
+        className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-6 space-y-4"
+      >
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1">
             <label className="text-gray-900">First name</label>
@@ -64,7 +66,6 @@ useEffect(() => {
             type="email"
             placeholder="Type your email here"
             name="email"
-            autoComplete="email"
             className="w-full rounded-md border border-gray-300 px-3 py-2"
           />
           <p className="text-orange-500 bg-white">
@@ -93,7 +94,10 @@ useEffect(() => {
         </div>
 
         <p className="text-gray-900">
-          Already have an account? <Link href={"/login"}><span className="text-green-700 underline">Sign in</span></Link>
+          Already have an account?{" "}
+          <Link href={"/login"}>
+            <span className="text-green-700 underline">Sign in</span>
+          </Link>
         </p>
       </form>
     </>

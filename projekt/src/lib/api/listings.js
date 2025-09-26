@@ -1,6 +1,6 @@
 import fetchErrors from "../fetchErrors";
-import { baseUrl } from "@/constant";
-
+//import { baseUrl } from "@/constant";
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function getAllListings() {
   try {
     const response = await fetch(`${baseUrl}/listings`);
@@ -10,7 +10,6 @@ export async function getAllListings() {
     throw new Error(error);
   }
 }
-
 export async function getSingleListingDetails(listingId) {
   try {
     const response = await fetch(`${baseUrl}/listings/${listingId}`);
@@ -20,7 +19,6 @@ export async function getSingleListingDetails(listingId) {
     throw new Error(error);
   }
 }
-
 export async function getUserListings(userId, token) {
   try {
     const response = await fetch(`${baseUrl}/listings`, {
@@ -31,18 +29,14 @@ export async function getUserListings(userId, token) {
     });
     fetchErrors(response);
     const allListings = await response.json();
-
-    // Filter to only show the user's own listings
     const userListings = allListings.filter(
       (listing) => listing.userId === parseInt(userId)
     );
-
     return userListings;
   } catch (error) {
     throw new Error(error);
   }
 }
-
 export async function createSwapRequest(requestData, token) {
   try {
     const response = await fetch(`${baseUrl}/requests`, {
@@ -57,7 +51,6 @@ export async function createSwapRequest(requestData, token) {
     if (response.status === 204) {
       return { success: true };
     }
-
     return await response.json();
   } catch (error) {
     throw new Error(error);

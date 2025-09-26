@@ -8,15 +8,26 @@ export default async function Header() {
       <div className="mx-auto max-w-6xl px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image src="/icon.png" alt="SwapHub logo" width={28} height={28} className="h-7 w-7" />
+            <Image
+              src="/icon.png"
+              alt="SwapHub logo"
+              width={28}
+              height={28}
+              className="h-7 w-7"
+            />
             <span className="font-semibold text-gray-900">SwapHub</span>
           </div>
           <nav className="hidden md:flex items-center gap-1 text-sm">
-            <Link href="/" className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
+            <Link
+              href="/"
+              className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors"
+            >
               Listings
             </Link>
-            <Link href={{ pathname: "/", hash: "contact" }}
-              className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors">
+            <Link
+              href={{ pathname: "/", hash: "contact" }}
+              className="px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors"
+            >
               Contact
             </Link>
             <div className="ml-4 flex items-center gap-2">
@@ -29,7 +40,7 @@ export default async function Header() {
                   </form>
                   <Link
                     href="/profile"
-                    className="px-4 py-2 rounded-lg bg-[#95D6A4]  text-black hover:bg-gray-800 font-medium transition-colors"
+                    className="px-4 py-2 rounded-lg bg-[#95D6A4]  text-black hover:bg-gray-100 font-medium "
                   >
                     Profile
                   </Link>
@@ -44,7 +55,7 @@ export default async function Header() {
                   </Link>
                   <Link
                     href="/signup"
-                    className="px-4 py-2 rounded-lg bg-[#95D6A4]  text-black hover:bg-gray-800 font-medium transition-colors"
+                    className="px-4 py-2 rounded-lg bg-[#95D6A4]  text-black hover:bg-gray-100 font-medium transition-colors"
                   >
                     Register
                   </Link>
@@ -57,4 +68,3 @@ export default async function Header() {
     </header>
   );
 }
-

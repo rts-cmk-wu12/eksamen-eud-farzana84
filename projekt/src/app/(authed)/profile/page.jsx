@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import ProfileForm from "@/components/forms/ProfileForm";
-const baseUrl = process.env.API_BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const metadata = {
   title: "Your Profile",
   description: "Manage your profile",

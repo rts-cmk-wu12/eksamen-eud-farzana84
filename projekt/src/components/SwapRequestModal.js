@@ -16,11 +16,6 @@ export default function SwapRequestModal({
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const isOwnItem = targetListing?.swapperId === userId;
-  useEffect(() => {
-    if (isOpen && userId && token && !isOwnItem) {
-      fetchUserListings();
-    }
-  }, [isOpen, userId, token, isOwnItem, fetchUserListings]);
 
   const fetchUserListings = useCallback(async () => {
     try {
@@ -34,6 +29,13 @@ export default function SwapRequestModal({
       setLoading(false);
     }
   }, [userId, token]);
+
+  useEffect(() => {
+    if (isOpen && userId && token && !isOwnItem) {
+      fetchUserListings();
+    }
+  }, [isOpen, userId, token, isOwnItem, fetchUserListings]);
+
   const handleSubmit = async () => {
     if (!selectedItem) {
       setError("Please select an item to offer in exchange.");
@@ -164,10 +166,11 @@ export default function SwapRequestModal({
                   {userListings.map((item) => (
                     <div
                       key={item.id}
-                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${selectedItem?.id === item.id
-                        ? "border-green-700 bg-green-50"
-                        : "border-gray-200 hover:border-gray-300"
-                        }`}
+                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        selectedItem?.id === item.id
+                          ? "border-green-700 bg-green-50"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
                       onClick={() => setSelectedItem(item)}
                     >
                       <div className="flex items-center gap-3">
@@ -208,8 +211,8 @@ export default function SwapRequestModal({
               {submitting
                 ? "Sending..."
                 : isOwnItem
-                  ? "Cannot Swap Own Item"
-                  : "Send Swap Request"}
+                ? "Cannot Swap Own Item"
+                : "Send Swap Request"}
             </button>
           </div>
         </div>

@@ -3,7 +3,10 @@ import { useState, useEffect, useMemo } from "react";
 import ListingsGrid from "./ListingsGrid";
 import Pagination from "./Pagination";
 import { getAllListings } from "@/lib/api/listings";
-export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) {
+export default function PaginatedListings({
+  searchQuery = "",
+  sortBy = "new",
+}) {
   const [allListings, setAllListings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -26,29 +29,30 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
 
     fetchListings();
   }, []);
-   const filteredAndSortedListings = useMemo(() => {
+  const filteredAndSortedListings = useMemo(() => {
     let filtered = allListings;
-     if (searchQuery.trim()) {
+    if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      filtered = allListings.filter(listing => 
-        listing.title.toLowerCase().includes(query) ||
-        listing.description.toLowerCase().includes(query)
+      filtered = allListings.filter(
+        (listing) =>
+          listing.title.toLowerCase().includes(query) ||
+          listing.description.toLowerCase().includes(query)
       );
     }
-      const sorted = [...filtered].sort((a, b) => {
+    const sorted = [...filtered].sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
-      
+
       if (sortBy === "new") {
-        return dateB - dateA; 
+        return dateB - dateA;
       } else if (sortBy === "old") {
-        return dateA - dateB; 
+        return dateA - dateB;
       }
       return 0;
     });
-      return sorted;
+    return sorted;
   }, [allListings, searchQuery, sortBy]);
-   useEffect(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, sortBy]);
 
@@ -62,25 +66,27 @@ export default function PaginatedListings({ searchQuery = "", sortBy = "new" }) 
       setCurrentPage(page);
     }
   };
-if (loading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-gray-600">Loading listings...</div>
       </div>
     );
   }
-if (error) {
+  if (error) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-red-600">{error}</div>
       </div>
     );
   }
-if (filteredAndSortedListings.length === 0) {
+  if (filteredAndSortedListings.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="text-gray-600">
-          {searchQuery.trim() ? "No listings found matching your search" : "No listings found"}
+        <div className="text-gray-600 text-2xl font-medium w-[60%] text-center">
+          {searchQuery.trim()
+            ? "No listings found matching your search. Try different keywords or check your spelling."
+            : "No listings found."}
         </div>
       </div>
     );
