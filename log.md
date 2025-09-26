@@ -23,4 +23,4 @@ sluttidspunkt: 15:50
 ## Dag 5
 starttidspunkt: 8:05
 
-sluttidspunkt:  
+sluttidspunkt: 12 
